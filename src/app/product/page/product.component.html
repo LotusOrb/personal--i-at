@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-12">
+            <form class="row g-3" [formGroup]="form">
+                <div class="col-12">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" formControlName="search" placeholder="search product">
+                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="dropdown" ngbDropdown>
+                        <a class="btn btn-outline-primary dropdown-toggle d-block w-100" ngbDropdownToggle>
+                            Year Filter
+                        </a>
+
+                        <ul class="dropdown-menu" ngbDropdownMenu>
+                            <li *ngFor="let dt of yearRange">
+                                <div class="dropdown-item">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" (change)="handleYearCheckbox($event.target.checked,dt)">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            {{dt}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="dropdown" ngbDropdown>
+                        <a class="btn btn-outline-primary dropdown-toggle d-block w-100" ngbDropdownToggle>
+                            Brand Filter
+                        </a>
+
+                        <ul class="dropdown-menu" ngbDropdownMenu>
+                            <li *ngFor="let dt of brandRange">
+                                <div class="dropdown-item">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" (change)="handleBrandCheckbox($event.target.checked,dt)">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            {{dt}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 d-flex flex-column">
+                    <div class="row">
+                        <div class="col-12">
+                            <div>Active Filter : </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="d-flex flex-column w-100">
+                                <small>Search</small>
+                                <small>Year</small>
+                                <small>Brand</small>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="d-flex flex-column w-100">
+                                <small>:</small>
+                                <small>:</small>
+                                <small>:</small>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="d-flex flex-column w-100">
+                                <small >{{form.value.search || '-'}}</small>
+                                <small style="overflow: hidden">{{form.value.year || '-'}}</small>
+                                <small>{{form.value.brand || '-'}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row g-4"  *ngIf="data.length > 0">
+        <div class="col-6 col-lg-4" *ngFor="let val of data">
+            <div class="card h-100">
+                <div class="card-body h-100 d-flex flex-column">
+                    <h5 class="card-title mb-3">{{val.name}}</h5>
+                    <div class="mb-auto">
+                        {{val.description?.length > 64 ? val.description?.substr(0,64) + "..." : val.description}}
+                    </div>
+                    <div class="py-2 d-flex flex-column w-100">
+                        <b>{{val.brand}}</b>
+                        <small class="text-primary">{{val.release_year}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="data.length === 0">
+        <div class="col-12">
+            <h5>No Data</h5>
+        </div>
+    </div>
+</div>

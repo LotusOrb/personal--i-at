@@ -1,0 +1,35 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 mx-auto">
+			<div class="card overflow-hidden">
+				<div class="card-body">
+					<h5 class="card-title text-center w-100">
+						Total Phone Per Year
+					</h5>
+					<ngx-charts-bar-vertical
+						[showDataLabel]="true"
+						[showXAxisLabel]="true"
+						[showYAxisLabel]="true"
+						[xAxisLabel]="'Number Of Phone'"
+						[yAxisLabel]="'Year'"
+						[results]="chartData"
+						[showDataLabel]="true"
+						[showGridLines]="true"
+						[yAxis]="true"
+						[xAxis]="true"
+						[scheme]="{
+							domain: [
+								'#0d6efd',
+								'#0d6efd',
+								'#0d6efd',
+								'#0d6efd',
+								'#0d6efd',
+								'#0d6efd'
+							]
+						}"
+					></ngx-charts-bar-vertical>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
